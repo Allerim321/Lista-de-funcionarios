@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-dark">
+            <span class="material-symbols-outlined ">
+                real_estate_agent
+            </span>
+            <a class="navbar-brand">Minha Empresa</a>
+            <form class="form-inline">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">Adicionar +</button>
+            </form>
+        </nav> 
+    </div>
+
+
+    <div class="container shadow bg-white rounded 10">
+        <h1 class="container">Lista de Funcionários</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Função</th>
+                <th scope="col">Salário</th>
+                <th scope="col">Ação</th>
+            </tr>
+            </thead>
+            <tbody class="tabela-js">
+            
+            </tbody>
+        </table>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <script>
+        const tabela = document.querySelector('.tabela-js')
+
+        axios.get('https://nodejs--mirellatcg.repl.co/funcionarios').then(function(resposta){
+            //Pegando dados da requisição (Pegar os dados precisa fazer uma requisição antes)
+            getData(resposta.data)
+        }).catch(function(error){
+            console.log(error)
+        })
+        //Percorrer array
+        function getData(dados){
+            //Funciona da mesma forma que o forEach, criando uma array function
+            dados.map((item)=> {
+                tabela.innerHTML += `
+                    <tr>
+                        <th scope="row">${item.id}</th>
+                        <td>${item.nome}</td>
+                        <td>${item.cargo}</td>
+                        <td>${item.salario}</td>
+                        <td><button type="button" class="btn btn-outline-primary">Editar</button>
+                            <button type="button" class="btn btn-outline-danger">Deletar</button>
+                        </td>
+                    </tr>
+
+                    `
+            })
+        }
+        
+    </script>
+</body>
+</html>
