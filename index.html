@@ -26,7 +26,6 @@
         </nav> 
     </div>
 
-
     <div class="container shadow bg-white rounded 10">
         <h1 class="container">Lista de Funcionários</h1>
         <table class="table">
@@ -45,41 +44,12 @@
         </table>
     </div>
     
-    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
-    <script>
-        const tabela = document.querySelector('.tabela-js')
-
-        axios.get('https://nodejs--mirellatcg.repl.co/funcionarios').then(function(resposta){
-            //Pegando dados da requisição (Pegar os dados precisa fazer uma requisição antes)
-            getData(resposta.data)
-        }).catch(function(error){
-            console.log(error)
-        })
-        //Percorrer array
-        function getData(dados){
-            //Funciona da mesma forma que o forEach, criando uma array function
-            dados.map((item)=> {
-                tabela.innerHTML += `
-                    <tr>
-                        <th scope="row">${item.id}</th>
-                        <td>${item.nome}</td>
-                        <td>${item.cargo}</td>
-                        <td>${item.salario}</td>
-                        <td><button type="button" class="btn btn-outline-primary"><i class="bi bi-pencil"></i>Editar</button>
-                            <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i>Deletar</button>
-                        </td>
-                    </tr>
-
-                    `
-            })
-        }
-    </script>
+    <script src="script.js"></script>
 
     <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -91,11 +61,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Nome:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Função:</label>
+                                <input class="form-control" id="message-text">
+                            </div>
+                            <div>
+                                <label for="recipient-name" class="col-form-label">Salário:</label>
+                                <input class="form-control" id="message-text" placeholder="R$">
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                        </div>
                 </div>
             </div>
         </div>
